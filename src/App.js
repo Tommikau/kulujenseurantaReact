@@ -22,7 +22,6 @@ const App=()=> {
 </Navbar>
 
 
-
   <Routes>
 
       <Route path="/KulutLista" element={<KulutLista/>}/>
