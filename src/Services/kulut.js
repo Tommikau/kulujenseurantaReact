@@ -15,5 +15,13 @@ const create = uusiKulu =>{
     return axios.post(baseUrl, uusiKulu)
 }
 
+const update = (object) => {
+    console.log('Päivitettävä data:', object);
 
-export default{getAll ,remove, create}
+    return axios.put(`${baseUrl}${object.id}/`, object)
+  }
+  
+
+
+
+export default{getAll ,remove, create, update}

@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import kulutService from './Services/kulut';
+import MuokkaaKulu from "./KuluEdit";
 import LisääKulu from "./KuluAdd";
 import './App.css';
 
 const KulutLista = () => {
-    const [kulut, setKulut] = useState([]);
-    const [reload, reloadNow] = useState(false);
+    const [kulut, setKulut] = useState([])
+    const [reload, reloadNow] = useState(false)
     const [lisäystila, setLisäystila]=useState(false)
-
-    
+    const [editTila, setEditTila] =useState(false)
+    const [muokattavaKulu, setMuokattavaKulu]=useState(false)
+  //  const [search, setSearch]=useState("")
+    const [hakutermit, setHakutermit] = useState(['Sähkö', 'Vesi', 'Testi']);
+    const [valittuHakutermi, setValittuHakutermi] = useState('');
+  
 
     useEffect(() => {
         kulutService.getAll()
@@ -18,7 +23,24 @@ const KulutLista = () => {
             .catch(error => {
                 console.error('Jotain meni vikaan kulujen haussa: ', error);
             });
-    }, [reload,lisäystila]);
+    }, [reload,lisäystila,editTila]);
+
+  // Tavallinen haku 
+  //const handleSearchInputChange = (event) => {
+    //    setSearch(event.target.value.toLowerCase());
+    //  }
+      const handleHakutermiChange = (event) => {
+        setValittuHakutermi(event.target.value.toLowerCase());
+      };
+    
+    
+    const muokkaaKulu =(kulu) =>{
+        setMuokattavaKulu(kulu)
+        setEditTila(true)
+        reloadNow(!reload)
+        }
+    
+
     const poistaKulu = (kulu) => {
         let vastaus = window.confirm(`Poista kulu ${kulu.id}`)
     
@@ -51,10 +73,35 @@ const KulutLista = () => {
     }
     
     return (
-        <div>
-            <h1>Kulut</h1>
-            {!lisäystila && <button id='lisaaNappi' onClick={()=> setLisäystila(true)}>Lisää uusi</button>}
+        <> 
+        <div id='kulutListaContainer' >
+           
+            <h1 id='kulutListaTitle'>Kulut</h1>
+            <div>
+
+            {!lisäystila && !editTila && (
+            <>
+              <select id='kuluValinta'value={valittuHakutermi} onChange={handleHakutermiChange}>
+                <option value="">Valitse hakutermi</option>
+                {hakutermit.map((termi) => (
+                  <option key={termi} value={termi}>
+                    {termi}
+                  </option>
+                ))}
+              </select>
+            </>
+          )}
+        </div>
+            {
+            editTila && <MuokkaaKulu setEditTila={setEditTila} 
+                  muokattavaKulu={muokattavaKulu} 
+                />}
+
+            {!editTila && <button id='lisaaNappi' onClick={()=> setLisäystila(true)}>Lisää uusi</button>}
             {lisäystila && <LisääKulu setLisäystila={setLisäystila} />}
+
+            {!lisäystila && !editTila
+            &&
             <table id='kulutTaulu'>
                 <thead>
                     <tr>
@@ -69,22 +116,24 @@ const KulutLista = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {kulut.map(k =>
+                    {kulut
+                    .filter(k=>k.nimi.toLowerCase().includes(valittuHakutermi)).map(k =>
                         <tr key={k.id}>
                             <td>{k.id}</td>
                             <td>{k.nimi}</td>
                             <td>{k.hinta}</td>
-                            <td>{k.lasku_päivämäärä}</td>
+                            <td>{new Date(k.lasku_päivämäärä).toLocaleDateString('fi-FI')}</td>
                             <td>
                                 <button id='poista' onClick={()=>poistaKulu(k)}>Poista</button>
-                                <button id='muokkaaNappi'>Muokkaa</button>
+                                <button id='muokkaaNappi' onClick={()=>muokkaaKulu(k)} >Muokkaa</button>
 
                             </td>
                         </tr>
                     )}
                 </tbody>
-            </table>
+            </table>}
         </div>
+        </>
     );
 }
 
