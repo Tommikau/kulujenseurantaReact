@@ -6,6 +6,226 @@
   height: 40vmin;
   pointer-events: none;
 }
+#kulutListaContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#kulutListaTitle {
+  margin-bottom: 20px; /* Säädä tarvittaessa */
+}
+
+#lisaaNappi {
+  margin-left: auto; /* Aseta nappi sivun oikeaan laitaan */
+}
+
+#kulutTaulu {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+#kulutTaulu th, #kulutTaulu td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+#kulutTaulu th {
+  background-color: #f2f2f2;
+}
+
+#poista {
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 20px;
+}
+
+#poista:hover {
+  background-color: #d9534f;
+}
+
+#lisaaNappi {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 20px; 
+  margin-left: 10px;
+}
+
+#muokkaaNappi:hover {
+  background-color: #4c54ae;
+}
+#muokkaaNappi {
+  background-color: #5c62b8;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 20px; /* Voit säätää väliä ylhäällä tarpeen mukaan */
+  margin-left: 20px;
+}
+
+#lisaaNappi:hover {
+  background-color: #4cae4c;
+}
+#lisää {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+#lisää h2 {
+  color: #333;
+  margin-bottom: 20px;
+  margin-left: 100px;
+}
+
+#lisää form {
+  display: flex;
+  flex-direction: column;
+}
+
+#lisää form div {
+  margin-bottom: 15px;
+}
+
+#lisää label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+  font-size: 16px; /* Voit säätää tarpeen mukaan */
+
+}
+
+#lisää input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-top: 5px;
+  font-size: 14px; 
+
+
+}#lisää input[type="submit"] {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  margin-top: 10px;
+
+}
+
+#lisää input[type="submit"]:hover{
+  background-color: #0056b3;
+}
+#lisää input[type="button"] {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #ff5900;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+
+#lisää input[type="button"]:hover{
+  background-color: #b30015;
+}
+
+#muokkaa {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+#muokkaa h2 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+input {
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 14;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+input[type="button"] {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #ff5900;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+
+input[type="button"]:hover {
+  background-color: #c9302c;
+}
+
+ #kuluValinta {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.tyhjaOption {
+  font-style: italic;
+}
+
+.hakutermiOption {
+  background-color: #f2f2f2;
+}
+
+.tervetuloa-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
 import kulutService from './Services/kulut';
+import MuokkaaKulu from "./KuluEdit";
+import LisääKulu from "./KuluAdd";
+import './App.css';
 
 const KulutLista = () => {
-    const [kulut, setKulut] = useState([]);
-    const [reload, reloadNow] = useState(false);
-
+    const [kulut, setKulut] = useState([])
+    const [reload, reloadNow] = useState(false)
+    const [lisäystila, setLisäystila]=useState(false)
+    const [editTila, setEditTila] =useState(false)
+    const [muokattavaKulu, setMuokattavaKulu]=useState(false)
+  //  const [search, setSearch]=useState("")
+    const [hakutermit, setHakutermit] = useState(['Sähkö', 'Vesi', 'Testi']);
+    const [valittuHakutermi, setValittuHakutermi] = useState('');
+  
 
     useEffect(() => {
         kulutService.getAll()
@@ -14,7 +23,24 @@ const KulutLista = () => {
             .catch(error => {
                 console.error('Jotain meni vikaan kulujen haussa: ', error);
             });
-    }, []);
+    }, [reload,lisäystila,editTila]);
+
+  // Tavallinen haku 
+  //const handleSearchInputChange = (event) => {
+    //    setSearch(event.target.value.toLowerCase());
+    //  }
+      const handleHakutermiChange = (event) => {
+        setValittuHakutermi(event.target.value.toLowerCase());
+      };
+    
+    
+    const muokkaaKulu =(kulu) =>{
+        setMuokattavaKulu(kulu)
+        setEditTila(true)
+        reloadNow(!reload)
+        }
+    
+
     const poistaKulu = (kulu) => {
         let vastaus = window.confirm(`Poista kulu ${kulu.id}`)
     
@@ -22,51 +48,60 @@ const KulutLista = () => {
         kulutService.remove(kulu.id)
         .then(res => {
             if (res.status === 200) {
-           // setMessage(`Successfully removed product ${product.productName}`)
-            //setIsPositive(true)
-            //setShowMessage(true)
-            window.scrollBy(0, -10000) // Scrollataan ylös jotta nähdään alert :)
-    
-            // Ilmoituksen piilotus
-           // setTimeout(() => {
-           // setShowMessage(false)},
-           // 5000
-           // )
-            reloadNow(!reload)
-            }
-            
+            window.scrollBy(0, -10000) 
+
+        }        reloadNow(!reload)
+
                 }
+            
             )
             .catch(error => {
-               // setMessage(error)
-                //setIsPositive(false)
-                //setShowMessage(true)
                 console.log(error)
                 window.scrollBy(0, -10000) // Scrollataan ylös 
         
-                //setTimeout(() => {
-                //  setShowMessage(false)
-               //  }, 6000)
               })
         } //poiston  peruutus
         else {
-        //setMessage('Poisto peruttu onnistuneesti.')
-          //  setIsPositive(true)
-         //   setShowMessage(true)
+        
          console.log("poiston peruutus onnistui!")  
          window.scrollBy(0, -10000) // Scrollataan ylös 
     
-            // Ilmoituksen piilotus
-           // setTimeout(() => {
-           // setShowMessage(false)},
-            //5000
-           // )
-        }    
-    
+           
+        }  
+  
+
     }
     
     return (
-        <div>
+        <> 
+        <div id='kulutListaContainer' >
+           
+            <h1 id='kulutListaTitle'>Kulut</h1>
+            <div>
+
+            {!lisäystila && !editTila && (
+            <>
+              <select id='kuluValinta'value={valittuHakutermi} onChange={handleHakutermiChange}>
+                <option value="">Valitse hakutermi</option>
+                {hakutermit.map((termi) => (
+                  <option key={termi} value={termi}>
+                    {termi}
+                  </option>
+                ))}
+              </select>
+            </>
+          )}
+        </div>
+            {
+            editTila && <MuokkaaKulu setEditTila={setEditTila} 
+                  muokattavaKulu={muokattavaKulu} 
+                />}
+
+            {!editTila && <button id='lisaaNappi' onClick={()=> setLisäystila(true)}>Lisää uusi</button>}
+            {lisäystila && <LisääKulu setLisäystila={setLisäystila} />}
+
+            {!lisäystila && !editTila
+            &&
             <table id='kulutTaulu'>
                 <thead>
                     <tr>
@@ -77,24 +112,28 @@ const KulutLista = () => {
                         <th>Summa</th>
                         
                         <th>Päivämäärä</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {kulut.map(k =>
+                    {kulut
+                    .filter(k=>k.nimi.toLowerCase().includes(valittuHakutermi)).map(k =>
                         <tr key={k.id}>
                             <td>{k.id}</td>
                             <td>{k.nimi}</td>
                             <td>{k.hinta}</td>
-                            <td>{k.lasku_päivämäärä}</td>
+                            <td>{new Date(k.lasku_päivämäärä).toLocaleDateString('fi-FI')}</td>
                             <td>
-                                <button onClick={()=>poistaKulu(k)}>Poista</button>
-                                <button>Testi</button>
+                                <button id='poista' onClick={()=>poistaKulu(k)}>Poista</button>
+                                <button id='muokkaaNappi' onClick={()=>muokkaaKulu(k)} >Muokkaa</button>
+
                             </td>
                         </tr>
                     )}
                 </tbody>
-            </table>
+            </table>}
         </div>
+        </>
     );
 }
 
