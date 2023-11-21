@@ -13,28 +13,33 @@ const MuokkaaKulu=({setEditTila, muokattavaKulu}) =>{
 
     const handleSubmit=(event) =>{
         event.preventDefault()
+        const token = localStorage.getItem('token');
+
         var uusiKulu ={
+            user:token,
             id:uusiId,
             hinta:uusiHinta,
             nimi:uusiNimi,
             lasku_päivämäärä: uusiLaskuPvm
         };
-        
+        const config = {
+            headers: { Authorization: `Token ${localStorage.getItem('token')}` },
+        };
 
-        kulutService.update(uusiKulu)
+        kulutService.update(uusiKulu, config)
         .then(response => {
-            if (response.status === 200) {
-              //  window.alert(`Muokattu kulua ${uusiKulu.id}`);         
+            if (response.status === 200 || response.status === 201) {
+                alert(`Kulu muokattu ${uusiKulu.id}`);
+                setEditTila(false);
+            } else {
+                alert(`Virhe: ${response.statusText}`);
             }
-            setEditTila(false);
-
-        }).catch(error => {
-            window.alert('Kulun muokkaus epäonnistui. ' + error);
-            setTimeout(() => {
-            }, 5000);
         })
-            setEditTila(false)
-    }
+        .catch(error => {
+            alert(`Virhe: ${error.message}`);
+            setTimeout(() => {}, 5000);
+        });
+};
     
 
     return (

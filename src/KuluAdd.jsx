@@ -10,31 +10,37 @@ const LisääKulu=({setLisäystila}) =>{
     const [uusiNimi, asetaUusiNimi] = useState('')
     const [uusiLaskuPvm, asetaUusiLaskuPvm] = useState('')
 
-    const handleSubmit=(event) =>{
-        event.preventDefault()
-        var uusiKulu ={
-            hinta:uusiHinta,
-            nimi:uusiNimi,
-            lasku_päivämäärä: uusiLaskuPvm
-        };
-        
-
-        kulutService.create(uusiKulu)
-        .then(response => {
-            if (response.status === 200) {
-                window.confirm(`Kulu lisätty ${uusiKulu.id}`)               
-            }
-            setLisäystila(false);
-
-        }).catch(error => {
-            window(error)
-            setTimeout(() => {
-                            }, 5000);
-        })
-       
-    }
+    const handleSubmit = (event) => {
+        event.preventDefault();
     
-
+        const token = localStorage.getItem('token');
+        
+        const uusiKulu = {
+            user: token,
+            hinta: uusiHinta,
+            nimi: uusiNimi,
+            lasku_päivämäärä: uusiLaskuPvm,
+        };
+    
+        const config = {
+            headers: { Authorization: `Token ${localStorage.getItem('token')}` },
+        };
+    
+        kulutService.create(uusiKulu, config)
+            .then(response => {
+                if (response.status === 200 || response.status === 201) {
+                    alert(`Kulu lisätty ${uusiKulu.id}`);
+                    setLisäystila(false);
+                } else {
+                    alert(`Virhe: ${response.statusText}`);
+                }
+            })
+            .catch(error => {
+                alert(`Virhe: ${error.message}`);
+                setTimeout(() => {}, 5000);
+            });
+    };
+     
     return (
         
         <div id='lisää'>
@@ -48,7 +54,7 @@ const LisääKulu=({setLisäystila}) =>{
                 <option value="Sähkö">Sähkö</option>
                 <option value="Vesi">Vesi</option>
                 <option value="Vuokra">Vuokra</option>
-    {/* Lisää tarvittavat kulutyypit tähän */}
+                     {/* Lisää tarvittavat kulutyypit tähän */}
                 </select>
             </div>
 

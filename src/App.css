@@ -44,6 +44,7 @@
   cursor: pointer;
   font-size: 14px;
   margin-left: 20px;
+  border-radius: 10px;
 }
 
 #poista:hover {
@@ -59,6 +60,7 @@
   font-size: 14px;
   margin-top: 20px; 
   margin-left: 10px;
+  border-radius: 10px;
 }
 
 #muokkaaNappi:hover {
@@ -71,8 +73,9 @@
   padding: 5px 10px;
   cursor: pointer;
   font-size: 14px;
-  margin-top: 20px; /* Voit säätää väliä ylhäällä tarpeen mukaan */
+  margin-top: 20px; 
   margin-left: 20px;
+  border-radius: 10px;
 }
 
 #lisaaNappi:hover {
@@ -83,14 +86,15 @@
   margin: auto;
   padding: 20px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #f9f9f9;
 }
 
 #lisää h2 {
   color: #333;
   margin-bottom: 20px;
-  margin-left: 100px;
+  margin-left: 35px;
+  margin-right: 35px;
 }
 
 #lisää form {
@@ -106,14 +110,14 @@
   font-weight: bold;
   margin-bottom: 5px;
   color: #555;
-  font-size: 16px; /* Voit säätää tarpeen mukaan */
+  font-size: 16px; /* Voi säätää tarpeen mukaan */
 
 }
 
 #lisää input {
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 10px;
   margin-top: 5px;
   font-size: 14px; 
 
@@ -124,7 +128,7 @@
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 3px;
+  border-radius: 10px;
   margin-top: 10px;
 
 }
@@ -138,7 +142,7 @@
   background-color: #ff5900;
   color: #fff;
   border: none;
-  border-radius: 3px;
+  border-radius: 10px;
   margin-top: 10px;
 }
 
@@ -151,7 +155,7 @@
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #f9f9f9;
 }
 
@@ -181,7 +185,7 @@ input[type="submit"] {
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 3px;
+  border-radius: 10px;
   margin-top: 10px;
 }
 
@@ -196,7 +200,7 @@ input[type="button"] {
   background-color: #ff5900;
   color: #fff;
   border: none;
-  border-radius: 3px;
+  border-radius: 10px;
   margin-top: 10px;
 }
 
@@ -207,7 +211,7 @@ input[type="button"]:hover {
  #kuluValinta {
   padding: 5px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 10px;
   margin-left: 10px;
 }
 
@@ -225,6 +229,131 @@ input[type="button"]:hover {
   padding: 20px;
   text-align: center;
 }
+
+/* Rekisterointi.css */
+
+#rekisteröinti {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+#rekisteröinti form {
+  display: flex;
+  flex-direction: column;
+
+  
+}
+
+#rekisteröinti form-input {
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 14;
+  margin-top: 10px;
+}
+
+.rekisteröintiButton {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  margin-top: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.resetButton {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+  background-color:red;
+  color: white;
+  cursor: pointer;
+}
+.resetButton:hover{
+  background-color: orangered;
+}
+
+
+.rekisteröintiButton:hover {
+  background-color: #0056b3;
+}
+
+#login {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 8px;
+  margin-top: 10px;
+  margin-left: 50px;
+  
+}
+
+#username {
+  margin-left: 50px;
+  padding: 8px;
+  margin-bottom: 26px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+#password {
+  margin-left: 50px;
+  padding: 8px;
+  margin-bottom: 26px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+#loginButton {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#loginButton:hover {
+  background-color: darkblue;
+}
+
+#registerButton{
+  padding: 10px;
+  background-color:#007bff;
+  color: #fff;
+  border: #ffff;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+#registerButton:hover{
+  background-color: darkblue;
+}
+
 
 
 @media (prefers-reduced-motion: no-preference) {
