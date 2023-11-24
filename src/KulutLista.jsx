@@ -16,6 +16,9 @@ const KulutLista = () => {
   
 
     useEffect(() => {
+      const token = localStorage.getItem('token')
+        kulutService.setToken(token)
+        console.log(token)
         kulutService.getAll()
             .then(data => {
                 setKulut(data);
@@ -42,7 +45,7 @@ const KulutLista = () => {
     
 
     const poistaKulu = (kulu) => {
-        let vastaus = window.confirm(`Poista kulu ${kulu.id}`)
+        let vastaus = window.confirm(`Poista kulu`)
     
         if (vastaus === true) {
         kulutService.remove(kulu.id)
@@ -105,7 +108,7 @@ const KulutLista = () => {
             <table id='kulutTaulu'>
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        
             
                         <th>Nimi</th>
                         
@@ -119,7 +122,6 @@ const KulutLista = () => {
                     {kulut
                     .filter(k=>k.nimi.toLowerCase().includes(valittuHakutermi)).map(k =>
                         <tr key={k.id}>
-                            <td>{k.id}</td>
                             <td>{k.nimi}</td>
                             <td>{k.hinta}</td>
                             <td>{new Date(k.lasku_päivämäärä).toLocaleDateString('fi-FI')}</td>
