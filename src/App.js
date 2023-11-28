@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { BrowserRouter as Router,Link, Route, Routes } from 'react-router-dom';
+import { useNavigate, BrowserRouter as Router,Link, Route, Routes, Navigate } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -7,36 +7,35 @@ import Login from './Login';
 import Home from './Home';
 import KulutLista from './KulutLista';
 import Kaaviot from './Kaaviot';
-import RekisteröintiForm from './Rekisteröinti';
+import RekisterointiForm from './Rekisterointi';
 
 const App = () => {
   const [loggedInUser, setLoggedinUser] = useState('');
   
+  
   const logout= () =>{
     localStorage.clear()
     setLoggedinUser('')
-    window.location.href = '/';
-
+    window.location('/')
   }
   
   useEffect(()=>{
-    let stoderUser = localStorage.getItem("username")
-    if(stoderUser !== null){
-      setLoggedinUser('stoderUser')
+    let storedUser = localStorage.getItem("username")
+    if(storedUser !== null){
+      setLoggedinUser('storedUser')
     }
   },[])
   return (
     <Router>
       {loggedInUser ? (
         <div>
-          {/* Navbar and other components for logged-in users */}
+          {/* Navbar ja muut komponenti näytetään kirjautumisen jälkeen */}
           <Navbar bg="dark" variant="dark">
             <Nav className="mr-auto">
               <Link to={'/'} className='nav-link'>Home</Link>
               <Link to={'/KulutLista'} className='nav-link'>Kulut</Link>
               <Link to={'/Kaaviot'} className='nav-link'>Kaaviot</Link>
               <Link onClick={logout} className='nav-link'>Logout</Link>
-            
             </Nav>
           </Navbar>
 
@@ -47,14 +46,14 @@ const App = () => {
           </Routes>
         </div>
       ) : (
-        // Show only the Login component for non-logged-in users
+        // Ennen kirjautumista näytetään vain login ja rekisteröinti
         <Routes>
           <Route path='/' element={<Login setLoggedinUser={setLoggedinUser} />} />
-          <Route path="/Rekisteröinti" element={<RekisteröintiForm />} />
+          <Route path="/Rekisterointi" element={<RekisterointiForm />} />
         </Routes>
       )}
     </Router>
   );
 }
 
-export default App;
+export default App

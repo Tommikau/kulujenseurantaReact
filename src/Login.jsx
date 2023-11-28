@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import authenticationService from './Services/authService';
-
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = ({setLoggedinUser}) => {
   const [credentials, setCredentials] = useState({
     username: '',
     password: '',
   });
+
+  
+  const navigate = useNavigate()
+  
+  const handleRegisterClick = () => {
+    navigate('/Rekisterointi')
+  };
 
   const [loginError, setLoginError] = useState(null);
 
@@ -26,10 +33,11 @@ const LoginForm = ({setLoggedinUser}) => {
       const token = authenticationResult.token;
       localStorage.setItem("token", token);
       localStorage.setItem("username", credentials.username);
-      console.log('Kirjautuminen onnistui:', token);
+     //console.log('Kirjautuminen onnistui:', token);
       setLoggedinUser(credentials.username)
 
     } catch (error) {
+    //  alert(error + ' ota yhteys sivun ylläpitäjään jos ongelma jatkuu')
       console.error('Kirjautumisvirhe:', error);
       setLoginError('Virheelliset kirjautumistiedot');
     }
@@ -61,12 +69,12 @@ const LoginForm = ({setLoggedinUser}) => {
           />
         </div>
         <button id='loginButton' type="submit">Kirjaudu</button>
-        <button id='registerButton' type="button" onClick={() => {
-        window.location.href = '/Rekisteröinti';
-      }}>
+        
+
+        <button id='registerButton' type="button" onClick={handleRegisterClick}>
         Rekisteröidy
-      </button>
-      
+        </button>
+              
       </form>
 
       {loginError && <p style={{ color: 'red' }}>{loginError}</p>}
@@ -74,4 +82,4 @@ const LoginForm = ({setLoggedinUser}) => {
   );
 };
 
-export default LoginForm;
+export default LoginForm

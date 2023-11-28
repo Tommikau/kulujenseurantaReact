@@ -11,8 +11,10 @@ const KulutLista = () => {
     const [editTila, setEditTila] =useState(false)
     const [muokattavaKulu, setMuokattavaKulu]=useState(false)
   //  const [search, setSearch]=useState("")
-    const [hakutermit, setHakutermit] = useState(['Sähkö', 'Vesi', 'Testi']);
-    const [valittuHakutermi, setValittuHakutermi] = useState('');
+    const [hakutermit] = useState(['sähkö', 'vesi', 'vuokra','ruoka','viihde','auto']);
+ //   const [valittuHakutermi, setValittuHakutermi] = useState('');
+    const [valittuTyyppi, setValittuTyyppi] = useState('');
+
   
 
     useEffect(() => {
@@ -28,13 +30,19 @@ const KulutLista = () => {
             });
     }, [reload,lisäystila,editTila]);
 
+    //pois
+//    const handleTyyppiChange = (event) => {
+  //    const selectedType = event.target.value.toLowerCase();
+    //  setValittuTyyppi(selectedType === 'kaikki' ? '' : selectedType);
+//    };
+    
   // Tavallinen haku 
   //const handleSearchInputChange = (event) => {
     //    setSearch(event.target.value.toLowerCase());
     //  }
-      const handleHakutermiChange = (event) => {
-        setValittuHakutermi(event.target.value.toLowerCase());
-      };
+    //  const handleHakutermiChange = (event) => {
+      //  setValittuHakutermi(event.target.value.toLowerCase());
+     // };
     
     
     const muokkaaKulu =(kulu) =>{
@@ -84,14 +92,15 @@ const KulutLista = () => {
 
             {!lisäystila && !editTila && (
             <>
-              <select id='kuluValinta'value={valittuHakutermi} onChange={handleHakutermiChange}>
-                <option value="">Valitse hakutermi</option>
-                {hakutermit.map((termi) => (
-                  <option key={termi} value={termi}>
-                    {termi}
-                  </option>
-                ))}
-              </select>
+              <select id='kuluSelect' value={valittuTyyppi} onChange={(k) => setValittuTyyppi(k.target.value)}>
+                  <option value="">Kaikki tyypit</option>
+                  {hakutermit.map((tyyppi) => (
+    <option key={tyyppi} value={tyyppi}>{tyyppi}</option>
+  ))}
+</select>
+{!editTila && <button id='lisaaNappi' onClick={()=> setLisäystila(true)}>Lisää uusi</button>}
+            {lisäystila && <LisääKulu setLisäystila={setLisäystila} />}
+
             </>
           )}
         </div>
@@ -100,9 +109,7 @@ const KulutLista = () => {
                   muokattavaKulu={muokattavaKulu} 
                 />}
 
-            {!editTila && <button id='lisaaNappi' onClick={()=> setLisäystila(true)}>Lisää uusi</button>}
-            {lisäystila && <LisääKulu setLisäystila={setLisäystila} />}
-
+           
             {!lisäystila && !editTila
             &&
             <table id='kulutTaulu'>
@@ -120,7 +127,7 @@ const KulutLista = () => {
                 </thead>
                 <tbody>
                     {kulut
-                    .filter(k=>k.nimi.toLowerCase().includes(valittuHakutermi)).map(k =>
+                    .filter(k=>k.nimi.toLowerCase().includes(valittuTyyppi)).map(k =>
                         <tr key={k.id}>
                             <td>{k.nimi}</td>
                             <td>{k.hinta}</td>

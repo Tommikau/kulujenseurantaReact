@@ -68,29 +68,37 @@ const Kaaviot = () => {
   return (
     <div>
       <h1>Kulujen kuukausittainen kehitys</h1>
-      <label>Valitse kulun tyyppi:</label>
-      <select value={valittuTyyppi} onChange={(e) => setValittuTyyppi(e.target.value)}>
+      <label font-size='12px'>Valitse kulun tyyppi:</label>
+      <select id='kuluSelectTyyppi' value={valittuTyyppi} onChange={(e) => setValittuTyyppi(e.target.value)}>
         <option value="">Kaikki tyypit</option>
-        <option value="Sähkö">Sähkö</option>
-        <option value="Vesi">Vesi</option>
-        {/* Lisää muut tyypit tarvittaessa */}
+                <option value="Sähkö">Sähkö</option>
+                <option value="Vesi">Vesi</option>
+                <option value="Vuokra">Vuokra</option>
+                <option value="Ruoka">Ruoka</option>
+                <option value="Auto">Auto</option>
+                <option value="Viihde">Viihde</option>
+               {/* Lisää muut tyypit tarvittaessa */}
       </select>
-      <label>Valitse kuukausi:</label>
-      <select value={valittuKuukausi} onChange={(e) => setValittuKuukausi(e.target.value)}>
-        <option value="">Kaikki kuukaudet</option>
+      <label font-size='12px'>Valitse kuukausi:</label>
+      <select id='kuluSelectMonth'value={valittuKuukausi} onChange={(e) => setValittuKuukausi(e.target.value)}>
+        <option value="">Kaikki kuukausi</option>
         <option value="1">Tammi</option>
         <option value="2">Helmi</option>
         <option value="3">Maalis</option>
         <option value="4">Huhti</option>
         <option value="5">Touko</option>
         <option value="6">Kesä</option>
-
-
-        {/* Lisää muut kuukaudet tarvittaessa */}
+        <option value="7">Heinä</option>
+        <option value="8">Elo</option>
+        <option value="9">Syys</option>
+        <option value="10">Loka</option>
+        <option value="11">Marras</option>
+        <option value="12">Joulu</option>
+        
       </select>
   
-      <label>Valitse vuosi:</label>
-      <select value={valittuVuosi} onChange={(e) => setValittuVuosi(e.target.value)}>
+      <label font-size='12px'>Valitse vuosi:</label>
+      <select id='kuluSelectYear' value={valittuVuosi} onChange={(e) => setValittuVuosi(e.target.value)}>
       <option value="2022">2022</option>
 
         {/* Lisää vuodet tarvittaessa */}

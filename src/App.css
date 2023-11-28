@@ -6,10 +6,30 @@
   height: 40vmin;
   pointer-events: none;
 }
+
+.active {
+  font-weight: bolder;
+  font-size: 20px;
+}
+
 #kulutListaContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#kuluSelect{
+  width: 200px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+#kuluSelect option{
+  font-size: 14px;
+  background-color: #fff;
+  color: #333;
 }
 
 #kulutListaTitle {
@@ -261,7 +281,7 @@ input[type="button"]:hover {
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
   margin-top: 10px;
   color: white;
   cursor: pointer;
@@ -332,7 +352,7 @@ label {
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
   cursor: pointer;
   margin-top: 20px;
 }
@@ -346,13 +366,60 @@ label {
   background-color:#007bff;
   color: #fff;
   border: #ffff;
-  border-radius: 10px;
+  border-radius: 20px;
   cursor: pointer;
   margin-top: 10px;
 }
 #registerButton:hover{
   background-color: darkblue;
 }
+
+#kuluSelectTyyppi{
+  flex: auto;
+  width: 175px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+#kuluSelectTyyppi option{
+  font-size: 14px;
+  background-color: #fff;
+  color: #333;
+}
+
+#kuluSelectMonth{
+  flex: auto;
+
+  width: 175px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+#kuluSelectMonth option{
+  font-size: 14px;
+  background-color: #fff;
+  color: #333;
+}
+
+#kuluSelectYear{
+  flex: auto;
+  width: 175px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+#kuluSelectYear option{
+  font-size: 14px;
+  background-color: #fff;
+  color: #333;
+}
+
 
 
 

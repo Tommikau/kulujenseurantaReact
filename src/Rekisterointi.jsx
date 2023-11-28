@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import registerService from "./Services/registerService";
 
 
-const RekisteröintiForm = () => {
+const RekisterointiForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
@@ -16,7 +16,7 @@ const RekisteröintiForm = () => {
     const handlePasswordConfirmChange = (event) => {
         const confirmPass = event.target.value;
         setPasswordConfirm(confirmPass);
-         // Check if the password meets the minimum length requirement
+        //Tarkistetaan että salasana on vähintään 8 merkkiä pitkä
         if (confirmPass.length < MIN_PASSWORD_LENGTH) {
           setPasswordError(`Salasanassa tulee olla vähintään ${MIN_PASSWORD_LENGTH} merkkiä ja sisältää vähintään yksi numero`);
         }else if (confirmPass !== password) {
@@ -70,7 +70,7 @@ const RekisteröintiForm = () => {
           });
     
           console.log("Rekisteröinti onnistui:", response);
-          alert("Rekisteröinti onnistui!");
+          alert("Rekisteröinti onnistui! Paina ok siirtyäksesi kirjautumiseen");
           setRegistered(true);
         } catch (error) {
           console.error("Rekisteröinti epäonnistui:", error);
@@ -85,6 +85,7 @@ const RekisteröintiForm = () => {
     const handleReset = () => {
         setUsername("");
         setPassword("");
+        setPasswordConfirm("");
         setEmail("");
     }
 
@@ -108,4 +109,4 @@ const RekisteröintiForm = () => {
     )
 }
 
-export default RekisteröintiForm;
+export default RekisterointiForm;
