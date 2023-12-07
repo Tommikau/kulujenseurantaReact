@@ -29,7 +29,7 @@ const MuokkaaKulu=({setEditTila, muokattavaKulu}) =>{
         kulutService.update(uusiKulu, config)
         .then(response => {
             if (response.status === 200 || response.status === 201) {
-                alert(`Kulu muokattu ${uusiKulu.id}`);
+              //  alert(`Kulu muokattu ${uusiKulu.id}`);
                 setEditTila(false);
             } else {
                 alert(`Virhe: ${response.statusText}`);
@@ -55,7 +55,10 @@ const MuokkaaKulu=({setEditTila, muokattavaKulu}) =>{
                 <option value="Sähkö">Sähkö</option>
                 <option value="Vesi">Vesi</option>
                 <option value="Vuokra">Vuokra</option>
-    {/* Lisää tarvittavat kulutyypit tähän */}
+                <option value="Auto">Auto</option>
+                <option value="Ruokakauppa">Kauppa</option>
+                <option value="Viihde">Viihde</option>
+                {/* Lisää tarvittavat kulutyypit tähän */}
                 </select>            
                 </div>
                  <div>

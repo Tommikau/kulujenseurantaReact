@@ -12,7 +12,7 @@ const Kaaviot = () => {
   const [valittuVuosi, setValittuVuosi] = useState(new Date().getFullYear().toString()); // Alusta kuluvalla vuodella
 
   useEffect(() => {
-    console.log('Valittu tyyppi, kuukausi ja vuosi muuttuivat:', valittuTyyppi, valittuKuukausi, valittuVuosi);
+   // console.log('Valittu tyyppi, kuukausi ja vuosi muuttuivat:', valittuTyyppi, valittuKuukausi, valittuVuosi);
 
     kulutService.getAll()
       .then(data => {
@@ -72,8 +72,12 @@ const Kaaviot = () => {
       <select value={valittuTyyppi} onChange={(e) => setValittuTyyppi(e.target.value)}>
         <option value="">Kaikki tyypit</option>
         <option value="Sähkö">Sähkö</option>
-        <option value="Vesi">Vesi</option>
-        {/* Lisää muut tyypit tarvittaessa */}
+                <option value="Vesi">Vesi</option>
+                <option value="Vuokra">Vuokra</option>
+                <option value="Auto">Auto</option>
+                <option value="Ruokakauppa">Kauppa</option>
+                <option value="Viihde">Viihde</option>
+                  {/* Lisää muut tyypit tarvittaessa */}
       </select>
       <label>Valitse kuukausi:</label>
       <select value={valittuKuukausi} onChange={(e) => setValittuKuukausi(e.target.value)}>
@@ -84,6 +88,12 @@ const Kaaviot = () => {
         <option value="4">Huhti</option>
         <option value="5">Touko</option>
         <option value="6">Kesä</option>
+        <option value="7">Heinä</option>
+        <option value="8">Elo</option>
+        <option value="9">Syys</option>
+        <option value="10">Loa</option>
+        <option value="11">Marras</option>
+        <option value="12">Joulu</option>
 
 
         {/* Lisää muut kuukaudet tarvittaessa */}

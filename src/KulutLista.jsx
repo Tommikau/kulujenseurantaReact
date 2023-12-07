@@ -11,7 +11,7 @@ const KulutLista = () => {
     const [editTila, setEditTila] =useState(false)
     const [muokattavaKulu, setMuokattavaKulu]=useState(false)
   //  const [search, setSearch]=useState("")
-    const [hakutermit, setHakutermit] = useState(['Sähkö', 'Vesi', 'Testi']);
+    const [hakutermit, setHakutermit] = useState(['Sähkö', 'Vesi', 'Vuokra', 'Viihde', 'Kauppa','Auto']);
     const [valittuHakutermi, setValittuHakutermi] = useState('');
   
 

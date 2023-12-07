@@ -29,7 +29,7 @@ const LisääKulu=({setLisäystila}) =>{
         kulutService.create(uusiKulu, config)
             .then(response => {
                 if (response.status === 200 || response.status === 201) {
-                    alert(`Kulu lisätty ${uusiKulu.id}`);
+                  //  alert(`Kulu lisätty ${uusiKulu.id}`);
                     setLisäystila(false);
                 } else {
                     alert(`Virhe: ${response.statusText}`);
@@ -54,6 +54,12 @@ const LisääKulu=({setLisäystila}) =>{
                 <option value="Sähkö">Sähkö</option>
                 <option value="Vesi">Vesi</option>
                 <option value="Vuokra">Vuokra</option>
+                <option value="Auto">Auto</option>
+                <option value="Ruokakauppa">Kauppa</option>
+                <option value="Viihde">Viihde</option>
+
+
+
                      {/* Lisää tarvittavat kulutyypit tähän */}
                 </select>
             </div>
