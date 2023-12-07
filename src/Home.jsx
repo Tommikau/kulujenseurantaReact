@@ -1,5 +1,6 @@
 import React from "react";
 import './App.css';
+import money from './money.png'
 
 
 
@@ -13,7 +14,9 @@ const Home =() =>{
                 <p>Kulut välilehdeltä näet kaikki kulut ja voit lisätä uusia sekä suodattaa kuluja tyypin mukaan.
               </p>
               <p>Kaaviossa näet kulut graafisesti esitteyinä
-                </p>            
+                </p> 
+
+                <img src={money} alt="Kuluja" style={{width:'200px', height:'auto'}}/>      
         </div>
     )
 }

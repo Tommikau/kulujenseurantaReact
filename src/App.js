@@ -1,21 +1,21 @@
-import React, { useState,useEffect } from 'react';
-import { BrowserRouter as Router,Link, Route, Routes } from 'react-router-dom';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
+import React, { useState,useEffect } from 'react'
+import { BrowserRouter as Router,Link, Route, Routes } from 'react-router-dom'
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Login from './Login';
-import Home from './Home';
-import KulutLista from './KulutLista';
-import Kaaviot from './Kaaviot';
-import RekisteröintiForm from './Rekisteröinti';
+import Login from './Login'
+import Home from './Home'
+import KulutLista from './KulutLista'
+import Kaaviot from './Kaaviot'
+import RekisteröintiForm from './Rekisteröinti'
 
 const App = () => {
-  const [loggedInUser, setLoggedinUser] = useState('');
+  const [loggedInUser, setLoggedinUser] = useState('')
   
   const logout= () =>{
     localStorage.clear()
     setLoggedinUser('')
-    window.location.href = '/';
+    window.location.href = '/'
 
   }
   

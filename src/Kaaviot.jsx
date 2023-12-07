@@ -91,7 +91,7 @@ const Kaaviot = () => {
         <option value="7">Heinä</option>
         <option value="8">Elo</option>
         <option value="9">Syys</option>
-        <option value="10">Loa</option>
+        <option value="10">Loka</option>
         <option value="11">Marras</option>
         <option value="12">Joulu</option>
 
