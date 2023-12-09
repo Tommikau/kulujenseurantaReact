@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import kulutService from './Services/kulut';
-import MuokkaaKulu from "./KuluEdit";
-import LisääKulu from "./KuluAdd";
-import './App.css';
+import React, { useState, useEffect } from "react"
+import kulutService from './Services/kulut'
+import MuokkaaKulu from "./KuluEdit"
+import LisääKulu from "./KuluAdd"
+import './App.css'
 
 const KulutLista = () => {
     const [kulut, setKulut] = useState([])
@@ -11,8 +11,8 @@ const KulutLista = () => {
     const [editTila, setEditTila] =useState(false)
     const [muokattavaKulu, setMuokattavaKulu]=useState(false)
   //  const [search, setSearch]=useState("")
-    const [hakutermit, setHakutermit] = useState(['Sähkö', 'Vesi', 'Vuokra', 'Viihde', 'Kauppa','Auto']);
-    const [valittuHakutermi, setValittuHakutermi] = useState('');
+    const [hakutermit, setHakutermit] = useState(['Sähkö', 'Vesi', 'Vuokra', 'Viihde', 'Kauppa','Auto'])
+    const [valittuHakutermi, setValittuHakutermi] = useState('')
   
 
     useEffect(() => {
@@ -21,19 +21,19 @@ const KulutLista = () => {
         console.log(token)
         kulutService.getAll()
             .then(data => {
-                setKulut(data);
+                setKulut(data)
             })
             .catch(error => {
-                console.error('Jotain meni vikaan kulujen haussa: ', error);
+                console.error('Jotain meni vikaan kulujen haussa: ', error)
             });
-    }, [reload,lisäystila,editTila]);
+    }, [reload,lisäystila,editTila])
 
   // Tavallinen haku 
   //const handleSearchInputChange = (event) => {
     //    setSearch(event.target.value.toLowerCase());
     //  }
       const handleHakutermiChange = (event) => {
-        setValittuHakutermi(event.target.value.toLowerCase());
+        setValittuHakutermi(event.target.value.toLowerCase())
       };
     
     
@@ -139,4 +139,4 @@ const KulutLista = () => {
     );
 }
 
-export default KulutLista;
+export default KulutLista

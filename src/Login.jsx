@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import authenticationService from './Services/authService';
+import React, { useState } from 'react'
+import authenticationService from './Services/authService'
 
 
 const LoginForm = ({setLoggedinUser}) => {
@@ -11,7 +11,7 @@ const LoginForm = ({setLoggedinUser}) => {
   const [loginError, setLoginError] = useState(null);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setCredentials((prevCredentials) => ({
       ...prevCredentials,
       [name]: value,
@@ -23,15 +23,15 @@ const LoginForm = ({setLoggedinUser}) => {
 
     try {
       const authenticationResult = await authenticationService.authenticate(credentials);
-      const token = authenticationResult.token;
+      const token = authenticationResult.token
       localStorage.setItem("token", token);
-      localStorage.setItem("username", credentials.username);
-      console.log('Kirjautuminen onnistui:', token);
+      localStorage.setItem("username", credentials.username)
+      console.log('Kirjautuminen onnistui:', token)
       setLoggedinUser(credentials.username)
 
     } catch (error) {
-      console.error('Kirjautumisvirhe:', error);
-      setLoginError('Virheelliset kirjautumistiedot');
+      console.error('Kirjautumisvirhe:', error)
+      setLoginError('Virheelliset kirjautumistiedot')
     }
   };
 
@@ -74,4 +74,4 @@ const LoginForm = ({setLoggedinUser}) => {
   );
 };
 
-export default LoginForm;
+export default LoginForm

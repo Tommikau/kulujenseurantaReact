@@ -10,7 +10,7 @@ const setToken = newToken =>{
 
 }
 
-const headers = { Authorization: `Token ${token}` };
+const headers = { Authorization: `Token ${token}` }
 
 
 const getAll =() =>{
@@ -32,7 +32,7 @@ const create = uusikulu =>{
     const config ={
         headers:{Authorization: token},
     }
-    console.log('Käytettävä token: '+ token);
+    console.log('Käytettävä token: '+ token)
     return axios.post(baseUrl, uusikulu,config)
 }      
 

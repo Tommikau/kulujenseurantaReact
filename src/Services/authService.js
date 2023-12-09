@@ -1,7 +1,7 @@
 // authenticationService.js
-import axios from 'axios';
+import axios from 'axios'
 
-const apiUrl = 'http://127.0.0.1:8000/login/';
+const apiUrl = 'http://127.0.0.1:8000/login/'
 
 const authenticate = async (userForAuth) => {
   try {
@@ -11,14 +11,14 @@ const authenticate = async (userForAuth) => {
       'Authorization': `Bearer ${localStorage.getItem('token') || ''}`,
     };
 
-    const response = await axios.post(apiUrl, userForAuth, { headers });
+    const response = await axios.post(apiUrl, userForAuth, { headers })
     const { token, ...userData } = response.data;
 
     // Store the token in localStorage
-    localStorage.setItem('token', token);
+    localStorage.setItem('token', token)
 
     // Return both the token and user data
-    return { token, userData };
+    return { token, userData }
   } catch (error) {
     throw error;
   }

@@ -1,6 +1,6 @@
-import React,{useState} from "react";
-import kulutService from './Services/kulut';
-import './App.css';
+import React,{useState} from "react"
+import kulutService from './Services/kulut'
+import './App.css'
 
 
 
@@ -13,7 +13,7 @@ const LisääKulu=({setLisäystila}) =>{
     const handleSubmit = (event) => {
         event.preventDefault();
     
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('token')
         
         const uusiKulu = {
             user: token,
@@ -32,12 +32,12 @@ const LisääKulu=({setLisäystila}) =>{
                   //  alert(`Kulu lisätty ${uusiKulu.id}`);
                     setLisäystila(false);
                 } else {
-                    alert(`Virhe: ${response.statusText}`);
+                    alert(`Virhe: ${response.statusText}`)
                 }
             })
             .catch(error => {
-                alert(`Virhe: ${error.message}`);
-                setTimeout(() => {}, 5000);
+                alert(`Virhe: ${error.message}`)
+                setTimeout(() => {}, 5000)
             });
     };
      

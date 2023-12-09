@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { Line } from 'react-chartjs-2';
-import kulutService from './Services/kulut';
-import { Chart, CategoryScale, LinearScale, LineController, PointElement, LineElement } from 'chart.js';
+import React, { useState, useEffect } from 'react'
+import { Line } from 'react-chartjs-2'
+import kulutService from './Services/kulut'
+import { Chart, CategoryScale, LinearScale, LineController, PointElement, LineElement } from 'chart.js'
 
-Chart.register(CategoryScale, LinearScale, LineController, PointElement, LineElement);
+Chart.register(CategoryScale, LinearScale, LineController, PointElement, LineElement)
 
 const Kaaviot = () => {
-  const [kuukausittaisetKulut, setKuukausittaisetKulut] = useState([]);
-  const [valittuTyyppi, setValittuTyyppi] = useState('');
-  const [valittuKuukausi, setValittuKuukausi] = useState('');
-  const [valittuVuosi, setValittuVuosi] = useState(new Date().getFullYear().toString()); // Alusta kuluvalla vuodella
+  const [kuukausittaisetKulut, setKuukausittaisetKulut] = useState([])
+  const [valittuTyyppi, setValittuTyyppi] = useState('')
+  const [valittuKuukausi, setValittuKuukausi] = useState('')
+  const [valittuVuosi, setValittuVuosi] = useState(new Date().getFullYear().toString()) // Alusta kuluvalla vuodella
 
   useEffect(() => {
    // console.log('Valittu tyyppi, kuukausi ja vuosi muuttuivat:', valittuTyyppi, valittuKuukausi, valittuVuosi);
 
     kulutService.getAll()
       .then(data => {
-        const kuukausittaisetKulutData = Array(12).fill(0);
+        const kuukausittaisetKulutData = Array(12).fill(0)
 
         data.forEach(kulu => {
           if (
@@ -24,17 +24,17 @@ const Kaaviot = () => {
             (!valittuKuukausi || new Date(kulu.lasku_päivämäärä).getMonth() + 1 === parseInt(valittuKuukausi)) &&
             (!valittuVuosi || new Date(kulu.lasku_päivämäärä).getFullYear() === parseInt(valittuVuosi))
           ) {
-            const kuukausi = new Date(kulu.lasku_päivämäärä).getMonth();
-            const vuosi = new Date(kulu.lasku_päivämäärä).getFullYear();
+            const kuukausi = new Date(kulu.lasku_päivämäärä).getMonth()
+            const vuosi = new Date(kulu.lasku_päivämäärä).getFullYear()
 
-            kuukausittaisetKulutData[kuukausi] += parseFloat(kulu.hinta);
+            kuukausittaisetKulutData[kuukausi] += parseFloat(kulu.hinta)
           }
         });
 
         setKuukausittaisetKulut(kuukausittaisetKulutData);
       })
       .catch(error => {
-        console.error('Jotain meni vikaan kulujen haussa: ', error);
+        console.error('Jotain meni vikaan kulujen haussa: ', error)
       });
   }, [valittuTyyppi, valittuKuukausi, valittuVuosi]);
 
@@ -116,5 +116,5 @@ const Kaaviot = () => {
   );
 }
   
-export default Kaaviot;
+export default Kaaviot
 
