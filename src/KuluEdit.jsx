@@ -1,6 +1,6 @@
-import React,{useState} from "react";
-import kulutService from './Services/kulut';
-import './App.css';
+import React,{useState} from "react"
+import kulutService from './Services/kulut'
+import './App.css'
 
 
 
@@ -13,7 +13,7 @@ const MuokkaaKulu=({setEditTila, muokattavaKulu}) =>{
 
     const handleSubmit=(event) =>{
         event.preventDefault()
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('token')
 
         var uusiKulu ={
             user:token,
@@ -32,12 +32,12 @@ const MuokkaaKulu=({setEditTila, muokattavaKulu}) =>{
               //  alert(`Kulu muokattu ${uusiKulu.id}`);
                 setEditTila(false);
             } else {
-                alert(`Virhe: ${response.statusText}`);
+                alert(`Virhe: ${response.statusText}`)
             }
         })
         .catch(error => {
-            alert(`Virhe: ${error.message}`);
-            setTimeout(() => {}, 5000);
+            alert(`Virhe: ${error.message}`)
+            setTimeout(() => {}, 5000)
         });
 };
     
@@ -58,7 +58,7 @@ const MuokkaaKulu=({setEditTila, muokattavaKulu}) =>{
                 <option value="Auto">Auto</option>
                 <option value="Ruokakauppa">Kauppa</option>
                 <option value="Viihde">Viihde</option>
-                {/* Lisää tarvittavat kulutyypit tähän */}
+                
                 </select>            
                 </div>
                  <div>
